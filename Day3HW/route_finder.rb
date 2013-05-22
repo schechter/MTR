@@ -15,6 +15,7 @@ def find_usr_start_stop
     next unless valid_line?(stop_line)
     puts "Where is your destination?"
     stop_array, stop_station = get_station(stop_line)
+    get_distance(start_array, stop_array, start_station, stop_station)
     #puts start_station
     #puts stop_station
     break
@@ -24,11 +25,12 @@ end
 
 def get_distance(start_line, stop_line, start_station, stop_station)
   if start_line == stop_line  #check for same train line, if so, get difference of index number in that lines array
+    #binding.pry
     answer=(start_line.index(start_station)-start_line.index(stop_station)).abs
-    puts "same line"
   else
-    answer_part_1=(start_line.index(start_station)-start_line.index("Union Square"+start_station(-2..-1))).abs #start_station("Union Square"+last 2 digigs ferom start
-    answer_part_2=(stop_line.index(stop_station)-stop_line.index("Union Square"+stop_station(-2..-1))).abs
+    #puts "different line"
+    answer_part_1=(start_line.index(start_station)-start_line.index("Union Square"+start_station[-2..-1])).abs #start_station("Union Square"+last 2 digigs ferom start
+    answer_part_2=(stop_line.index(stop_station)-stop_line.index("Union Square"+stop_station[-2..-1])).abs
     answer = answer_part_1+answer_part_2
   end
   puts answer
