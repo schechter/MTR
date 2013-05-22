@@ -28,6 +28,6 @@ def get_station(line)
         end
     end
 
-    line[station_index]
+    line, line[station_index]
 
 end 
