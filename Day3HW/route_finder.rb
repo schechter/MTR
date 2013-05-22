@@ -1,4 +1,6 @@
 require 'pry'
+require 'rainbow'
+
 @six_line = ['Grand Central.6', '33rd.6', '28th.6', '23rd.6', 'Union Square.6', 'Astor Place.6']
 @n_line = ['Time Square.N', '34th.N', '28th.N', '32rd.N', 'Union Square.N', '8th.N']
 @l_line = ['8th.L', '6th.L', 'Union Square.L', 'Astor Place.L']
@@ -44,16 +46,19 @@ def get_station(line)
   case line
   when '6'
     line = @six_line
+    line_color = :green
   when 'L'
     line = @l_line
+    line_color = '#777777' 
   when 'N'
     line = @n_line
+    line_color = '#FCCC0A'
   end
 
   while true
     station_number = 1
     line.each do |station|
-      puts "(#{station_number}) #{station[0..-3]}"
+      puts "(#{station_number}) #{station[0..-3]}".color(line_color)
       station_number += 1
     end
 
