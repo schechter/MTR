@@ -21,7 +21,7 @@ def get_station(line)
         end
         
         station_index = gets.chomp!.to_i
-        
+        puts station_index 
         unless station_index > 1 && station_index < line.length - 1
             puts "Invalid station number. Try again."
             next
@@ -30,4 +30,4 @@ def get_station(line)
 
     line, line[station_index]
 
-end 
+end
