@@ -1,5 +1,5 @@
-require_relative "AdvancedCalculator"
-require_relative "BasicCalculator"
+require_relative 'advanced_calculator'
+require_relative 'basic_calculator'
 
 
 def calculator
