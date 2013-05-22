@@ -1,31 +1,70 @@
-=begin
-3 arrays
-which array is start and stop in
-if same  absdiff of start and stop index
-else absdiff start and union sq  +abs dif of union sq and stop'
-=end
-six_line = ['Grand Central.6', '33rd.6', '28th.6', '23rd.6', 'Union Square.6', 'Astor Place.6']
-n_line = ['Time Square.N', '34th.N', '28th.N', '32rd.N', 'Union Square.N', '8th.N']
-l_line = ['8th.L', '6th.L', 'Union Square.L', 'Astor Place.L']
+require 'pry'
+@six_line = ['Grand Central.6', '33rd.6', '28th.6', '23rd.6', 'Union Square.6', 'Astor Place.6']
+@n_line = ['Time Square.N', '34th.N', '28th.N', '32rd.N', 'Union Square.N', '8th.N']
+@l_line = ['8th.L', '6th.L', 'Union Square.L', 'Astor Place.L']
+
 def find_usr_start_stop
-	puts "What line are you starting on?  6, L, or N"
-	s_line = get.chomp.upcase
-	next unless valid_line?(s_line)
-	s_station = get_station(s_line)
+  while true
+    puts "What line are you starting on?  6 L, or N"
+    start_line = gets.chomp.upcase
+    next unless valid_line?(start_line)
+    puts "What station are you starting on?"
+    start_array, start_station = get_station(start_line)
+    puts "What line is your destination on?  6, L, or N"
+    stop_line = gets.chomp.upcase
+    next unless valid_line?(stop_line)
+    puts "Where is your destination?"
+    stop_array, stop_station = get_station(stop_line)
+    #puts start_station
+    #puts stop_station
+    break
+  end
+end
 
 
+def get_distance(start_line, stop_line, start_station, stop_station)
+  if start_line == stop_line  #check for same train line, if so, get difference of index number in that lines array
+    answer=(start_line.index(start_station)-start_line.index(stop_station)).abs
+    puts "same line"
+  else
+    answer_part_1=(start_line.index(start_station)-start_line.index("Union Square"+start_station(-2..-1))).abs #start_station("Union Square"+last 2 digigs ferom start
+    answer_part_2=(stop_line.index(stop_station)-stop_line.index("Union Square"+stop_station(-2..-1))).abs
+    answer = answer_part_1+answer_part_2
+  end
+  puts answer
+end
 
 
+def valid_line?(input)
+  valid_ops = ['6', 'L', 'N']
+  valid_ops.include? input
+end
 
+def get_station(line)
+  case line
+  when '6'
+    line = @six_line
+  when 'L'
+    line = @l_line
+  when 'N'
+    line = @n_line
+  end
 
-	case s_line
-	when '6'
-		puts "At what stations are you starting? 1)Grand Central.6', '33rd.6', '28th.6', '23rd.6', 'Union Square.6', 'Astor Place.6'
-	when 'L'
-		puts  
-	when "N"
-		puts
-	next unless valid_station?()
-	
-	if 
-		puts "What station are you starting at?"
+  while true
+    station_number = 1
+    line.each do |station|
+      puts "(#{station_number}) #{station[0..-3]}"
+      station_number += 1
+    end
+
+    station_index = gets.chomp.to_i - 1
+    unless station_index >= 0 && station_index < line.length 
+      puts "Invalid station number. Try again."
+      next
+    end
+    break
+  end
+  return line, line[station_index]
+end
+
+find_usr_start_stop
