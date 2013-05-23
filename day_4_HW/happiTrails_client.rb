@@ -33,10 +33,20 @@ class Client
     @pets.push(animal)
   end
 
+<<<<<<< HEAD
+    def drop_pet(animal)
+        if !@pets.include? animal
+            puts "This animal does not belong to the client."
+            return
+        end
+        @pets.delete(animal)
+    end 
+=======
   def drop_pet(animal)
     @pets.delete(animal)
   end
   def to_s
     @name
   end
+>>>>>>> 15548372ca35fe0390206ad6ada3627826bf0bb4
 end
