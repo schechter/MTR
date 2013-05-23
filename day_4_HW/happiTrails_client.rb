@@ -33,5 +33,4 @@ class Client
         
         @pets.delete(animal)
     end 
-
 end
