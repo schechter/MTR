@@ -9,3 +9,14 @@ class Animal
         @favorite_toy = favorite_toy
         @owner = owner
     end
+
+    def prettify_gender(gender)
+        if gender == "m"
+            "he"
+        elsif gender == "f"
+            "she"
+        else
+            "(s)he"
+        end
+    end
+end
