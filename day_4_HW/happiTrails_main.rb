@@ -17,13 +17,18 @@ shelter_1.add_animal(pet_2)
 shelter_1.add_animal(pet_3)
 shelter_1.add_animal(pet_4)
 
+shelter_1.add_client(client_1)
+shelter_1.add_client(client_2)
+
+shelter_1.list_animals
+
 client_1.adopt_animal(shelter_1, pet_1)
 client_2.adopt_animal(shelter_1, pet_3)
-shelter.animals
+shelter_1.animals
 client_1.adopt_animal(shelter_1, pet_4)
 client_2.adopt_animal(shelter_1,pet_2)
-shelter.animals
+
 client_1.give_animal(shelter_1, pet_4)
 
-shelter.animals
-shelter.clients
+shelter_1.list_animals
+shelter_1.list_clients

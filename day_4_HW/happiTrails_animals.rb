@@ -10,7 +10,7 @@ class Animal
     @owner = owner
   end
   def to_s
-    "#{@name}, the #{breed}, #{gender} is #{age} year's old and loves to play with #{favorite_toy}'s."
+    "#{@name}, the #{breed}, #{self.prettify_gender(@gender)} is #{age} year's old and loves to play with #{favorite_toy}'s."
   end
 
   def prettify_gender(gender)
