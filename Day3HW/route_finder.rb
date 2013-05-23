@@ -33,7 +33,7 @@ def get_distance(start_line, stop_line, start_station, stop_station)
     answer_part_2 = (stop_line.index(stop_station) - stop_line.index("Union Square" + stop_station[-2..-1])).abs
     answer = answer_part_1 + answer_part_2
   end
-  puts "Your trip will take #{answer} stops?"
+  puts "Your trip will take #{answer} stops."
 end
 
 
