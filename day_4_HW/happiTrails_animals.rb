@@ -12,4 +12,14 @@ class Animal
   def to_s
     "#{@name}, the #{breed}, #{gender} is #{age} year's old and loves to play with #{favorite_toy}'s."
   end
+
+  def prettify_gender(gender)
+    if gender == "m"
+      "he"
+    elsif gender == "f"
+      "she"
+    else
+      "(s)he"
+    end
+  end
 end
