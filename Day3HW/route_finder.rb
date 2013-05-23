@@ -7,7 +7,7 @@ require 'rainbow'
 
 def find_usr_start_stop  #Gets User information, calls other functions.
   while true
-    puts "What line are you starting on?  6 L, or N"
+    puts "What line are you starting on?  6, L, or N"
     start_line = gets.chomp.upcase
     next unless valid_line?(start_line)   #check validation
     puts "What station are you starting on?"
@@ -33,7 +33,7 @@ def get_distance(start_line, stop_line, start_station, stop_station)
     answer_part_2 = (stop_line.index(stop_station) - stop_line.index("Union Square" + stop_station[-2..-1])).abs
     answer = answer_part_1 + answer_part_2
   end
-  puts answer
+  puts "Your trip will take #{answer} stops?"
 end
 
 
