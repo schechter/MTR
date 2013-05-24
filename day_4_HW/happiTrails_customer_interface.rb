@@ -33,16 +33,19 @@ def customer_interface)
         pet = customer.pets[pet_index]
         next if pet_index < 0 || pet_index > customer.pets.length - 1 # Index out of bounds
         customer.give_animal(shelter_1, animal)
+        break
     end
   end
 
-  def customer_adopts_pet
-    puts "Which pet would you like to adopt?"#fix client name
-    shelter_1.animals.length.times { |x| puts "(#{x+1}) #{shelter_1.animals[x].name}"} #I think this works needs testing
-    which_animal = gets.chomp.to_i
-    which_animal = validate_animal_choice(which_animal)
-    cLIENT_OBJECT.adopt_animal(shelter_1, shelter_1.animals[which_animal])#fix client object
+  def customer_adopts_pet(customer)
+    while true 
+        puts "Which pet would you like to adopt?"#fix client name
+        shelter_1.
+        which_animal = gets.chomp.to_i
+        which_animal = validate_animal_choice(which_animal)
+        cLIENT_OBJECT.adopt_animal(shelter_1, shelter_1.animals[which_animal])#fix client object
   end
+end
 
   def list_clients
     shelter_1.list_clients
