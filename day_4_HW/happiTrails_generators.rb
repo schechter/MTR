@@ -1,5 +1,5 @@
 def client_builder  #ths will return an array of client items
-  puts "How many clients does the Happi Trails have?".color(:white)
+  puts "How many clients does the Happi Trails have?".color(:red)
   number_of_clients=gets.chomp.to_i
   clients=[]
   number_of_clients.times {|x| clients.push(client_generator(x+1))}
