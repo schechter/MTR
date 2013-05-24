@@ -10,7 +10,7 @@ class Client
   end
 
   def give_animal(shelter, animal)
-    if !@pets.include? animal
+    unless @pets.include? animal
       puts "This animal does not belong to the client."
     else
       shelter.add_animal(animal)
@@ -25,7 +25,7 @@ class Client
     else
       shelter.drop_animal(animal)
       self.add_pet(animal)
-      puts "Congratulations! You've adopted #{animal.to_s}"
+      p "Congratulations! You've adopted #{animal.to_s}"
     end
   end
 
