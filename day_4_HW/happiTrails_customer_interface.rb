@@ -1,4 +1,3 @@
-
 def customer_interface
   quit=nil
   while quit !='n'
@@ -6,7 +5,7 @@ def customer_interface
     list_clients
     current_customer = gets.chomp  #This may need #'s to select from?
     validate_customer(current_customer)  #checks to see that selected customer in is in the list
-    puts "what does #{shelter_1.clients[current_customer-1].name} want to do today?"
+    puts "what does #{shelter.clients[current_customer-1].name} want to do today?"
     puts "(A)dopt a pet?"
     puts "(G)ive up a pet?"
     puts "(V)isit with the animals at the shelter?"
@@ -15,13 +14,13 @@ def customer_interface
     action = action_validator(action)
     case action
     when 'G'
-      custom_gives_up_pet(shelter_1.clients[current_customer+1])
+      custom_gives_up_pet(shelter.clients[current_customer+1])
     when 'A'
-      customer_adopts_pet(shelter_1.clients[current_customer+1])
+      customer_adopts_pet(shelter.clients[current_customer+1])
     when 'V'
-      shelter_1.list_animals
+      shelter.list_animals
     when 'L'
-      shelter_1.list_clients
+      shelter.list_clients
     end
     puts "Are there any more customers to take care of today?  (Y)es, (N)o"
     quit =gets.chomp.downcase!
@@ -30,7 +29,7 @@ end
 
 
 def validate_customer(current_customer)
-  while current_customer > shelter_1.clients.length
+  while current_customer > shelter.clients.length
     puts "Please selecr a valid customer #"
     current_customer = gets.chomp.to_i
   end
@@ -47,36 +46,28 @@ def custom_gives_up_pet(customer)
       puts "Invalid animal choice."
       next
     end
-    customer.give_animal(shelter_1, pet)
+    customer.give_animal(shelter, pet)
     break
   end
 end
 
 
 
-def custom_gives_up_pet(client)
-  puts "Which pet are you giving up #{client name}"#fix client name
-  (current_customer).list_pets#this needs to be fixed so that (current_custom)
-  #client object.  aslo client class need function, list_pets
-  #with #'s?
-  pet_index = gets.chomp,to_i
-  validat_pet_index(pet_index, current_customer_as_object)#fix customer object, same as above
-  current_customer_as_object.give_animal(shelter_1, animal_as_objeect)
-
-  def customer_adopts_pet(customer)
+def customer_adopts_pet(customer)
     while true
       puts "Which pet would you like to adopt?"
-      shelter_1.list_animals #TODO implement feature that lists numbers with names in shelter class. list_animals_with_numbers
-      animal_index = gets.chomp.to_i - 1
-      if pet_index < 0 || pet_index > shelter_1.animals.length - 1
+      shelter.list_animals #TODO implement feature that lists numbers with names in shelter class. list_animals_with_numbers
+      pet_index = gets.chomp.to_i - 1
+      if pet_index < 0 || pet_index > shelter.animals.length - 1
         puts "Invalid animal choice"
       end
-      customer.adopt_animal(shelter_1, shelter_1.animals[animal_index])
+      customer.adopt_animal(shelter, shelter.animals[pet_index])
       break
     end
   end
+
   def list_clients
-    shelter_1.list_clients
+    shelter.list_clients
   end
 
   def action_validator(action)
@@ -87,6 +78,3 @@ def custom_gives_up_pet(client)
     end
     action
   end
-
-
-
