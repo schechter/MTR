@@ -35,7 +35,7 @@ def customer_interface)
             puts "Invalid animal choice."
             next
         end
-        customer.give_animal(shelter_1, animal)
+        customer.give_animal(shelter_1, pet)
         break
     end
   end
