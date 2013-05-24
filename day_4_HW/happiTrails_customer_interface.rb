@@ -26,12 +26,14 @@ def customer_interface)
   end
 
   def custom_gives_up_pet(customer)
-    puts "Which pet are you giving up #{client name}"#fix client name
-    customer.list_pets
-    pet_index = gets.chomp.to_i - 1
-    pet = customer.pets[pet_index]
-    validate_pet_index(pet_index, customer)
-    customer.give_animal(shelter_1, animal)
+    while true
+        puts "Which pet are you giving up #{client name}"#fix client name
+        customer.list_pets
+        pet_index = gets.chomp.to_i - 1
+        pet = customer.pets[pet_index]
+        next if pet_index < 0 || pet_index > customer.pets.length - 1 # Index out of bounds
+        customer.give_animal(shelter_1, animal)
+    end
   end
 
   def customer_adopts_pet
