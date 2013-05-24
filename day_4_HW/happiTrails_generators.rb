@@ -8,6 +8,7 @@ end
 
 
 def client_generator(x) #will Clients
+  puts `clear`
   puts "What is client ##{x}'s name?".color(:white)
   name=gets.chomp
   puts "What is client ##{x}'s age?".color(:white)
@@ -26,6 +27,7 @@ def client_generator(x) #will Clients
 end
 
 def pet_generator(pet_number)
+  puts `clear`
     puts "What is pet #{pet_number}'s name?".color(:cyan)
     name = gets.chomp
     puts "What is pet #{pet_number}'s breed?".color(:cyan)

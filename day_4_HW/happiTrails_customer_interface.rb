@@ -1,7 +1,7 @@
 def customer_interface(shelter)  #shelter management
   quit=nil
   while quit !='n'
-    puts "Which client has come into the shelter?".color(:red)
+      puts "Which client has come into the shelter?".color(:red)
     shelter.list_clients_options
     current_customer = gets.chomp.to_i
     validate_customer(current_customer, shelter)  #checks to see that selected customer in is in the list
