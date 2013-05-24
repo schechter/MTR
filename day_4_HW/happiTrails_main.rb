@@ -35,8 +35,10 @@ shelter_1.list_clients
 def client_builder  #ths will return an array of client items
 	puts "How many clients does the Happi Trails have?"
 	number_of_clients=gets.chomp.to_i
-	name, age, gender, kids, num_pets = number_of_clients.times {|x| client_generator(x)}
-
+	clients=[]
+	number_of_clients.times {|x| clients.push(client_generator(x))}
+	clients
+end
 
 
 def client_generator(x)	
@@ -53,9 +55,8 @@ def client_generator(x)
 		puts "How many pets does client ##{x} have?"
 		num_pets = gets.chomp.to_i
 		pets = []
-		num_pets.times do |x| pets.push(pets_generator(x)}
-		pets = pet_generator
-		return name, age, gender, kids, num_pets
+		num_pets.times {|x| pets.push(pets_generator(x))}
+		Client.new(name, age, gender, kids, pets)
 	end
 end
 def gender_validator(gender)
