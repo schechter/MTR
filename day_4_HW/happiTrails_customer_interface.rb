@@ -31,7 +31,10 @@ def customer_interface)
         customer.list_pets
         pet_index = gets.chomp.to_i - 1
         pet = customer.pets[pet_index]
-        next if pet_index < 0 || pet_index > customer.pets.length - 1 # Index out of bounds
+        if pet_index < 0 || pet_index > customer.pets.length - 1 # Index out of bounds
+            puts "Invalid animal choice."
+            next
+        end
         customer.give_animal(shelter_1, animal)
         break
     end
@@ -39,13 +42,16 @@ def customer_interface)
 
   def customer_adopts_pet(customer)
     while true 
-        puts "Which pet would you like to adopt?"#fix client name
-        shelter_1.
-        which_animal = gets.chomp.to_i
-        which_animal = validate_animal_choice(which_animal)
-        cLIENT_OBJECT.adopt_animal(shelter_1, shelter_1.animals[which_animal])#fix client object
+        puts "Which pet would you like to adopt?"
+        shelter_1.list_animals #TODO implement feature that lists numbers with names in shelter class. list_animals_with_numbers
+        animal_index = gets.chomp.to_i - 1
+        if pet_index < 0 || pet_index > shelter_1.animals.length - 1
+            puts "Invalid animal choice"
+        end
+        customer.adopt_animal(shelter_1, shelter_1.animals[animal_index])
+        break
+    end
   end
-end
 
   def list_clients
     shelter_1.list_clients
