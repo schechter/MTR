@@ -98,7 +98,7 @@ shelters_customers= client_builder #builds the customer base
 shelters_customers.each { |c| shelter_1.add_client(c)}  #adds clients to shelter
 puts "How any animals are already in the shelter?"
 shelters_animals = []
-num_pets = gets.chomp.to_1
+num_pets = gets.chomp.to_i
 num_pets.times {|x| shelters_animals.push(pets_generator(x+1))} #generates list of animals already in shelter
 shelters_animals.each {|a| shelter_1.add_animal(a)} # add animals to shelter
 customer_interface(shelter_1)  #runs shelters customer interface
