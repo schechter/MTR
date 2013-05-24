@@ -1,4 +1,4 @@
-def customer_interface
+def customer_interface)
   quit=nil
   while quit !='n'
     puts "Which client has come into the shelter?"
@@ -25,14 +25,13 @@ def customer_interface
     quit =gets.chomp.downcase!
   end
 
-  def custom_gives_up_pet
+  def custom_gives_up_pet(customer)
     puts "Which pet are you giving up #{client name}"#fix client name
-    (current_customer).list_pets#this needs to be fixed so that (current_custom)
-    #client object.  aslo client class need function, list_pets
-    #with #'s?
-    pet_index = gets.chomp,to_i
-    validat_pet_index(pet_index, current_customer_as_object)#fix customer object, same as above
-    current_customer_as_object.give_animal(shelter_1, animal_as_objeect)
+    customer.list_pets
+    pet_index = gets.chomp.to_i - 1
+    pet = customer.pets[pet_index]
+    validate_pet_index(pet_index, customer)
+    customer.give_animal(shelter_1, animal)
   end
 
   def customer_adopts_pet
