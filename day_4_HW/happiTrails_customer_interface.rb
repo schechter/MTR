@@ -30,7 +30,7 @@ def customer_interface
     (current_customer).list_pets#this needs to be fixed so that (current_custom)
     #client object.  aslo client class need function, list_pets
     #with #'s?
-    pet_index = gets.chomp
+    pet_index = gets.chomp,to_i
     validat_pet_index(pet_index, current_customer_as_object)#fix customer object, same as above
     current_customer_as_object.give_animal(shelter_1, animal_as_objeect)
   end
@@ -43,8 +43,8 @@ def customer_interface
     cLIENT_OBJECT.adopt_animal(shelter_1, shelter_1.animals[which_animal])#fix client object
   end
 
-  def list_clients #TODO puts a lits of the cients names
-    # (#) name
+  def list_clients
+    shelter_1.list_clients
   end
 
   def action_validator(action)
@@ -56,7 +56,10 @@ def customer_interface
     action
   end
 
-  def validate_animal_choice#TODO
+  def validate_animal_choice(which_animal)#TODO
+    while which_animal> shelter_1.animanls.length
+      puts "Please enter a valid pet #"
+      which_animal = gets.to_i
     while 'something'=='else' #stuff here for animal choice validation
-    end 
+    end
   end
