@@ -11,21 +11,21 @@ class Client
 
   def give_animal(shelter, animal)
     unless @pets.include? animal
-      puts "This animal does not belong to the client."
+      puts "This animal does not belong to the client.".color(:yellow)
     else
       shelter.add_animal(animal)
       self.drop_pet(animal)
-      puts "Thank you for giving #{animal.name.capitalize} a shelter!"
+      puts "Thank you for giving #{animal.name.capitalize} a shelter!".color(:red)
     end
   end
 
   def adopt_animal(shelter, animal)
     unless shelter.animals.include? animal
-      p "That animal is not in the shelter right now"
+      p "That animal is not in the shelter right now".color(:yellow)
     else
       shelter.drop_animal(animal)
       self.add_pet(animal)
-      p "Congratulations! You've adopted #{animal.to_s}"
+      p "Congratulations! You've adopted #{animal.to_s}".color(:red)
     end
   end
 
@@ -35,7 +35,7 @@ class Client
 
   def drop_pet(animal)
     if !@pets.include? animal
-      puts "This animal does not belong to the client."
+      puts "This animal does not belong to the client.".color(:yellow)
       return
     end
     @pets.delete(animal)
@@ -44,7 +44,7 @@ class Client
     def list_pets_options
         i = 1
         @pets.each do |pet|
-            puts "(#{i} #{pet.name})"
+            puts "(#{i} #{pet.name})".color(:cyan)
             i += 1
         end
     end
