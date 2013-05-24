@@ -32,39 +32,52 @@ client_1.give_animal(shelter_1, pet_4)
 
 shelter_1.list_animals
 shelter_1.list_clients
+
 def client_builder  #ths will return an array of client items
-	puts "How many clients does the Happi Trails have?"
-	number_of_clients=gets.chomp.to_i
-	clients=[]
-	number_of_clients.times {|x| clients.push(client_generator(x))}
-	clients
+  puts "How many clients does the Happi Trails have?"
+  number_of_clients=gets.chomp.to_i
+  clients=[]
+  number_of_clients.times {|x| clients.push(client_generator(x+1))}
+  clients
 end
 
 
-def client_generator(x)	
-		puts "What is client ##{x}'s name?"
-		name=gets.chomp
-		puts "What is client ##{x}'s age?"
-		age = gets.chomp
-		puts "What is client ##{x}'s gender?"
-		gender = gets.chomp
-		gender = gender_validator(gender)
-		puts "Does client ##{x} have any kids? (y) or (n)"
-		kids = gets.chomp
-		kids = kids_validator?(kids)
-		puts "How many pets does client ##{x} have?"
-		num_pets = gets.chomp.to_i
-		pets = []
-		num_pets.times {|x| pets.push(pets_generator(x))}
-		Client.new(name, age, gender, kids, pets)
-	end
+def client_generator(x) #will Clients
+  puts "What is client ##{x}'s name?"
+  name=gets.chomp
+  puts "What is client ##{x}'s age?"
+  age = gets.chomp
+  puts "What is client ##{x}'s gender?"
+  gender = gets.chomp
+  gender = gender_validator(gender)
+  puts "Does client ##{x} have any kids? (y) or (n)"
+  kids = gets.chomp
+  kids = kids_validator?(kids)
+  puts "How many pets does client ##{x} have?"
+  num_pets = gets.chomp.to_i
+  pets = []
+  #num_pets.times {|x| pets.push(pets_generator(x+1))}
+  Client.new(name, age, gender, kids, pets)
 end
+
 def gender_validator(gender)
-	#TODO
+  while !(gender =='m' || gender =='f')
+    gender.downcase!
+    puts "Please enter m of f"
+    gender = gets.chomp
+  end
+  gender
 end
 def kids_validator?(kids)
-	#TODO
+	while !(kids =='m' || kids =='f')
+    kids.downcase!
+    puts "Please enter y or n"
+    kids = gets.chomp
+  end
+  kids
+
+  #TODO
 end
 def pet_generator(x) #this will return an array of pets
-	#TODO
+  #TODO
 end
