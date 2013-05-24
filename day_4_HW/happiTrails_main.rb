@@ -84,6 +84,7 @@ def gender_validator(gender)
   end
   gender
 end
+
 def kids_validator?(kids)
 	while !(kids =='m' || kids =='f')
     kids.downcase!
@@ -91,15 +92,6 @@ def kids_validator?(kids)
     kids = gets.chomp
   end
   kids
-
-  #TODO
-end
-def pet_generator(x) #this will return an array of pets
-<<<<<<< HEAD
-	#TODO
-end
-=======
-  #TODO
 end
 
 shelters_customers= client_builder #builds the customer base
@@ -111,6 +103,3 @@ num_pets.times {|x| shelters_animals.push(pets_generator(x+1))} #generates list 
 shelters_animals.each {|a| shelter_1.add_animal(a)} # add animals to shelter
 customer_interface  #runs shelters customer interface
 
-
-
->>>>>>> 10c4629cd0c40b501e5004bca90037371c014e15
