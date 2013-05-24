@@ -61,6 +61,21 @@ def client_generator(x) #will Clients
   Client.new(name, age, gender, kids, pets)
 end
 
+def pet_generator(pet_number)
+    name breed age gender favorite toy owner
+    puts "What is pet #{pet_number}'s name?"
+    name = gets.chomp
+    puts "What is pet #{pet_number}'s breed?"
+    breed = gets.chomp
+    puts "What is pet #{pet_number}'s age?"
+    age = gets.chomp
+    puts "What is pet #{pet_number}'s gender?"
+    gender = gets.chomp
+    puts "What is pet #{pet_number}'s favorite toy?"
+    favorite_toy = gets.chomp
+    Animal.new(name, breed, age, gender, favorite_toy)
+end
+
 def gender_validator(gender)
   while !(gender =='m' || gender =='f')
     gender.downcase!
@@ -80,6 +95,10 @@ def kids_validator?(kids)
   #TODO
 end
 def pet_generator(x) #this will return an array of pets
+<<<<<<< HEAD
+	#TODO
+end
+=======
   #TODO
 end
 
@@ -94,3 +113,4 @@ customer_interface  #runs shelters customer interface
 
 
 
+>>>>>>> 10c4629cd0c40b501e5004bca90037371c014e15
