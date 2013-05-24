@@ -57,12 +57,11 @@ def client_generator(x) #will Clients
   puts "How many pets does client ##{x} have?"
   num_pets = gets.chomp.to_i
   pets = []
-  num_pets.times {|x| pets.push(pets_generator(x+1))}
+  num_pets.times {|x| pets.push(pet_generator(x+1))}
   Client.new(name, age, gender, kids, pets)
 end
 
 def pet_generator(pet_number)
-    name breed age gender favorite toy owner
     puts "What is pet #{pet_number}'s name?"
     name = gets.chomp
     puts "What is pet #{pet_number}'s breed?"
@@ -71,6 +70,7 @@ def pet_generator(pet_number)
     age = gets.chomp
     puts "What is pet #{pet_number}'s gender?"
     gender = gets.chomp
+    gender_validator(gender)
     puts "What is pet #{pet_number}'s favorite toy?"
     favorite_toy = gets.chomp
     Animal.new(name, breed, age, gender, favorite_toy)
@@ -86,7 +86,7 @@ def gender_validator(gender)
 end
 
 def kids_validator?(kids)
-	while !(kids =='m' || kids =='f')
+	while !(kids =='y' || kids =='n')
     kids.downcase!
     puts "Please enter y or n"
     kids = gets.chomp
@@ -99,6 +99,6 @@ shelters_customers.each { |c| shelter_1.add_client(c)}  #adds clients to shelter
 puts "How any animals are already in the shelter?"
 shelters_animals = []
 num_pets = gets.chomp.to_i
-num_pets.times {|x| shelters_animals.push(pets_generator(x+1))} #generates list of animals already in shelter
+num_pets.times {|x| shelters_animals.push(pet_generator(x+1))} #generates list of animals already in shelter
 shelters_animals.each {|a| shelter_1.add_animal(a)} # add animals to shelter
 customer_interface(shelter_1)  #runs shelters customer interface
