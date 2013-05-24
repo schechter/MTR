@@ -15,7 +15,7 @@ class Client
     else
       shelter.add_animal(animal)
       self.drop_pet(animal)
-      puts "Thank you for giving #{animal.name} a shelter!"
+      puts "Thank you for giving #{animal.name.capitalize} a shelter!"
     end
   end
 
@@ -43,7 +43,7 @@ class Client
 
     def list_pets_options
         i = 1
-        :pets.each do |pet|
+        @pets.each do |pet|
             puts "(#{i} #{pet.name})"
             i += 1
         end

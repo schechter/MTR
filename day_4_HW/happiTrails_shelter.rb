@@ -25,7 +25,7 @@ class Shelter
 
   def list_animals_options
         i = 1
-        :animals.each do |animal|
+        @animals.each do |animal|
             puts "(#{i} #{animal.name})"
             i += 1
         end
@@ -33,7 +33,7 @@ class Shelter
 
   def list_clients_options
       i = 1
-      :clients.each do |animal|
+      @clients.each do |animal|
         puts "(#{i} #{animal.name})"
         i += 1
     end
