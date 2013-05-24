@@ -1,5 +1,5 @@
 
-def customer_interface)
+def customer_interface
   quit=nil
   while quit !='n'
     puts "Which client has come into the shelter?"
@@ -33,64 +33,60 @@ def validate_customer(current_customer)
   while current_customer > shelter_1.clients.length
     puts "Please selecr a valid customer #"
     current_customer = gets.chomp.to_i
+  end
+end
 
-    def custom_gives_up_pet(customer)
-      while true
-        puts "Which pet are you giving up #{client name}"#fix client name
-        customer.list_pets
-        pet_index = gets.chomp.to_i - 1
-        pet = customer.pets[pet_index]
-        next if pet_index < 0 || pet_index > customer.pets.length - 1 # Index out of bounds
-        customer.give_animal(shelter_1, animal)
-        break
+
+def custom_gives_up_pet(customer)
+  while true
+    puts "Which pet are you giving up #{client name}"#fix client name
+    customer.list_pets
+    pet_index = gets.chomp.to_i - 1
+    pet = customer.pets[pet_index]
+    if pet_index < 0 || pet_index > customer.pets.length - 1 # Index out of bounds
+      puts "Invalid animal choice."
+      next
+    end
+    customer.give_animal(shelter_1, pet)
+    break
+  end
+end
+
+
+
+def custom_gives_up_pet(client)
+  puts "Which pet are you giving up #{client name}"#fix client name
+  (current_customer).list_pets#this needs to be fixed so that (current_custom)
+  #client object.  aslo client class need function, list_pets
+  #with #'s?
+  pet_index = gets.chomp,to_i
+  validat_pet_index(pet_index, current_customer_as_object)#fix customer object, same as above
+  current_customer_as_object.give_animal(shelter_1, animal_as_objeect)
+
+  def customer_adopts_pet(customer)
+    while true
+      puts "Which pet would you like to adopt?"
+      shelter_1.list_animals #TODO implement feature that lists numbers with names in shelter class. list_animals_with_numbers
+      animal_index = gets.chomp.to_i - 1
+      if pet_index < 0 || pet_index > shelter_1.animals.length - 1
+        puts "Invalid animal choice"
       end
+      customer.adopt_animal(shelter_1, shelter_1.animals[animal_index])
+      break
     end
   end
+  def list_clients
+    shelter_1.list_clients
+  end
 
-  def custom_gives_up_pet(client)
-    puts "Which pet are you giving up #{client name}"#fix client name
-    (current_customer).list_pets#this needs to be fixed so that (current_custom)
-    #client object.  aslo client class need function, list_pets
-    #with #'s?
-    pet_index = gets.chomp,to_i
-    validat_pet_index(pet_index, current_customer_as_object)#fix customer object, same as above
-    current_customer_as_object.give_animal(shelter_1, animal_as_objeect)
-    =======
-    def customer_adopts_pet(customer)
-      while true
-        puts "Which pet would you like to adopt?"#fix client name
-        shelter_1.
-          which_animal = gets.chomp.to_i
-        which_animal = validate_animal_choice(which_animal)
-        cLIENT_OBJECT.adopt_animal(shelter_1, shelter_1.animals[which_animal])#fix client object
-      end
-      >>>>>>> e38e0c052fbf89becca099487487823e456921b2
+  def action_validator(action)
+    while !(action =='A' || action =='G' || action =='V' || action =='L')
+      action.upcase!
+      puts "Please enter (A)dopt, (G)ive, (V)isit, or (L)ist"
+      action = gets.chomp
     end
+    action
+  end
 
-    def customer_adopts_pet(client)
-      puts "Which pet would you like to adopt?"#fix client name
-      shelter_1.animals.length.times { |x| puts "(#{x+1}) #{shelter_1.animals[x].name}"} #I think this works needs testing
-      which_animal = gets.chomp.to_i
-      which_animal = validate_animal_choice(which_animal)
-      cLIENT_OBJECT.adopt_animal(shelter_1, shelter_1.animals[which_animal])#fix client object
-    end
 
-    def list_clients
-      shelter_1.list_clients
-    end
 
-    def action_validator(action)
-      while !(action =='A' || action =='G' || action =='V' || action =='L')
-        action.upcase!
-        puts "Please enter (A)dopt, (G)ive, (V)isit, or (L)ist"
-        action = gets.chomp
-      end
-      action
-    end
-
-    def validate_animal_choice(which_animal)
-      while which_animal> shelter_1.animanls.length
-        puts "Please enter a valid pet #"
-        which_animal = gets.to_i
-      end
-    end
