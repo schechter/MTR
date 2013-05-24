@@ -10,6 +10,7 @@ class Animal
     @owner = owner
   end
   def to_s
+    puts `clear`
     "#{@name}, the #{breed}, #{self.prettify_gender(@gender)} is #{age} year's old and loves to play with #{favorite_toy}'s.".color(:cyan)
   end
 

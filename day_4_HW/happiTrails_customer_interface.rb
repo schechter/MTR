@@ -38,6 +38,10 @@ end
 
 def custom_gives_up_pet(customer, shelter)
   while true
+    if customer.pets.length == 0
+      puts "#{customer.name.upcase}".color(:white) + " you don't have any pets?  What are you doing?".color(:yellow)
+      break
+    end
     puts "Which pet are you giving up #{customer.name}".color(:red)#fix client name
     customer.list_pets_options
     pet_index = gets.chomp.to_i - 1
@@ -53,6 +57,10 @@ end
 
 def customer_adopts_pet(customer, shelter)
   while true
+    if customer.pets.length == 0
+      puts "Didn't you see that ".color(:yellow) + "this shelter".color(:red) + " has no pets up for addoption? Pay attention ".color(:yellow) + "#{customer.name}".upcase.color(:white)
+      break
+    end
     puts "Which pet would you like to adopt?".color(:red)
     shelter.list_animals_options #TODO implement feature that lists numbers with names in shelter class. list_animals_with_numbers
     pet_index = gets.chomp.to_i - 1
