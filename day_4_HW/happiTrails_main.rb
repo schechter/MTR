@@ -101,4 +101,4 @@ shelters_animals = []
 num_pets = gets.chomp.to_1
 num_pets.times {|x| shelters_animals.push(pets_generator(x+1))} #generates list of animals already in shelter
 shelters_animals.each {|a| shelter_1.add_animal(a)} # add animals to shelter
-customer_interface(shelters_customers)  #runs shelters customer interface
+customer_interface(shelter_1)  #runs shelters customer interface

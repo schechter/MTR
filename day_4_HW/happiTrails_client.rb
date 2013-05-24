@@ -41,6 +41,14 @@ class Client
     @pets.delete(animal)
   end
 
+    def list_pets_options
+        i = 1
+        :pets.each do |pet|
+            puts "(#{i} #{pet.name})"
+            i += 1
+        end
+    end
+
   def to_s
     @name
   end
