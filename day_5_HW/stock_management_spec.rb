@@ -70,10 +70,17 @@ describe Portfolio do
             
             it 'subtracts value of stock * shares from owner\'s account balance' do
                 prev_owner_balance = portfolio_2.owner.balance
-                puts prev_owner_balance
                 portfolio_2.buy_stock('AAPL', 4)
                 stock_price = Portfolio.get_current_stock_price('AAPL')
                 portfolio_2.owner.balance.should eq(prev_owner_balance - 4 * stock_price)
+            end
+
+            it 'makes multiple separate purcahses of the same stock' do
+                prev_owner_balance = portfolio_2.owner.balance
+                portfolio_2.buy_stock('AAPL', 4)
+                stock_price = Portfolio.get_current_stock_price('AAPL')
+                portfolio_2.buy_stock('AAPL', 3)
+                portfolio_2.owner.balance.should eq(prev_owner_balance - 7 * stock_price)
             end
         end
     end 
