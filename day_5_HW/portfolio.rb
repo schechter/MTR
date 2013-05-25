@@ -11,7 +11,7 @@ class Portfolio
     
     def self.get_current_stock_price(stock_name)
         # Class variable because behavior does not change between instances
-        YahooFinance::get_quotes(YahooFinance::StandardQuote, 'AAPL')['AAPL'].lastTrade
+        YahooFinance::get_quotes(YahooFinance::StandardQuote, stock_name)[stock_name].lastTrade
     end
 
     def buy_stock(stock_name, num_stocks)
