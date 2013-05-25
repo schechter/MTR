@@ -17,5 +17,8 @@ class Portfolio
     def buy_stock(stock_name, num_stocks)
         total_cost = Portfolio.get_current_stock_price(stock_name) * num_stocks
         raise(RuntimeError, "Insufficient account funds.") if @owner.balance < total_cost
+        @stocks[stock_name] ||= 0 # Initialize stock if not already in existence
+        @stocks[stock_name] += num_stocks 
+        @owner.balance -= total_cost
     end
 end
