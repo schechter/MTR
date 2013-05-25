@@ -33,8 +33,12 @@ end
 
 describe Portfolio do
     let(:account_1) { Account.new("Account 1") }
+    let(:account_2) { Account.new("Account 2", 30000) }
     let(:portfolio_1) { Portfolio.new("Portfolio One", account_1) }
+    let(:portfolio_2) { Portfolio.new("Portfolio Two", account_2) }
     before { account_1.add_portfolio(portfolio_1) }
+    before { account_2.add_portfolio(portfolio_2) }
+
     
     describe '#new' do
         it 'builds an account with a name, owner, and empty stock hash' do
@@ -47,15 +51,37 @@ describe Portfolio do
     describe '#get_current_stock_price' do
         it 'gets the current price of Apple stock in float format' do
             apple_price = Portfolio.get_current_stock_price('AAPL')
-            puts "Stock price: #{apple_price}"
             apple_price.should be_an_instance_of(Float)
         end
     end
 
     describe '#buy_stock' do
-        it 'raises RuntimeError with a message if client buys stock > her account balance' do
-            expect {  portfolio_1.buy_stock('AAPL', 2) }.to raise_error(RuntimeError, "Insufficient account funds.")
+        context 'insufficient funds stock purchase' do
+            it 'raises RuntimeError with a message if client buys stock > her account balance' do
+                expect {  portfolio_1.buy_stock('AAPL', 2) }.to raise_error(RuntimeError, "Insufficient account funds.")
+            end
         end
-    end
 
+        context 'sufficient funds stock purcahse' do
+            it 'adds stock_name => number of shares to @stocks hash' do
+                portfolio_2.buy_stock('AAPL', 4)
+                portfolio_2.stocks['AAPL'].should eq(4)
+            end
+            
+            it 'subtracts value of stock * shares from owner\'s account balance' do
+                prev_owner_balance = portfolio_2.owner.balance
+                portfolio_2.buy_stock('AAPL', 4)
+                stock_price = Portfolio.get_current_stock_price('AAPL')
+                portfolio_2.owner.balance.should eq(prev_owner_balance - 4 * stock_price)
+            end
+
+            it 'makes multiple separate purcahses of the same stock' do
+                prev_owner_balance = portfolio_2.owner.balance
+                portfolio_2.buy_stock('AAPL', 4)
+                stock_price = Portfolio.get_current_stock_price('AAPL')
+                portfolio_2.buy_stock('AAPL', 3)
+                portfolio_2.owner.balance.should eq(prev_owner_balance - 7 * stock_price)
+            end
+        end
+    end 
 end
