@@ -10,4 +10,8 @@ class Account
     def add_portfolio(portfolio)
         @portfolios[portfolio.name] = portfolio
     end
+
+    def list_portfolios
+    	portfolios.keys.each {|portfolio| puts portfolio}
+    end
 end
