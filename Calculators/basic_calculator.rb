@@ -23,4 +23,6 @@ def basic_calculator
   end
   puts "Basic calculator quits, back to clacualtor choice with you!"
 end
+
+basic_calculator
 end
