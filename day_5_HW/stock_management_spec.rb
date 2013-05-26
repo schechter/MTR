@@ -149,7 +149,39 @@ describe Account do
         portfolio_2.portfolio_value.should eq(["Your 1 shares of FB are worth $ 24.3125 \n", "Your 1 shares of AAPL are worth $ 445.15 \n"])
       end
     end
-
   end
 
+  describe Firm do
+    let(:firm_1) { Firm.new}
+    let(:account_1) { Account.new("zlu", 3000) }
+    let(:account_2) { Account.new("zlu2", 3000) }
+    describe " #new "  do
+      it "makes a new firm that will hold accounts" do
+        firm_1.should be_an_instance_of Firm
+      end
+    end
+    describe " add_account" do
+      it "adds one account to firm" do
+        firm_1.add_account(account_1)
+        firm_1.accounts.should eq([account_1])
+      end
+    end
+
+
+    describe "list_accounts"  do
+      context "no accounts"do
+        it "puts a list of all acounts in teh firm" do
+          firm_1.list_accounts.should eq([])
+        end
+      end
+
+      context "multiple account" do
+        it "puts a list of the account the firm has" do
+          firm_1.add_account(account_1)
+          firm_1.add_account(account_2)
+          firm_1.list_accounts.should include(account_1, account_2)
+        end
+      end
+    end
+  end
 end
