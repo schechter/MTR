@@ -1,5 +1,6 @@
 require 'yahoofinance'
 require_relative 'account'
+require 'pry'
 
 class Portfolio
   attr_accessor :name, :stocks, :owner
@@ -31,6 +32,7 @@ class Portfolio
     @stocks[stock_name] -= num_stocks
     #puts @stocks[stock_name].class
     #puts num_stocks.class
+    #binding.pry
     raise(RuntimeError, "Insufficient shares for this sale") if @stocks[stock_name] < 0
     @owner.balance += (Portfolio.get_current_stock_price(stock_name) * num_stocks)
   end
@@ -48,3 +50,19 @@ class Portfolio
     #end
   end
 end
+=begin
+firm1=Firm.new
+account1=Account.new("Mike's account", 50000)
+portfolio1=Portfolio.new('Retierment Planning', account1)
+firm1.add_account(account1)
+portfolio1.buy_stock('FB', 4)
+portfolio1.buy_stock('AAPL', 4)
+portfolio1.buy_stock('GRPN', 4)
+portfolio1.list_stocks_held
+portfolio1.portfolio_value
+portfolio1.sell_stock("FB", 1)
+portfolio1.portfolio_value
+=end
+
+
+
