@@ -12,7 +12,15 @@ class Account
   end
 
   def list_portfolios
-    portfolios.keys.each {|portfolio| puts portfolio}
+    # Prints each portfolio and name line by line, returns a list of printed output
+    display_list = []
+    @portfolios.each_value do |portfolio|
+        display_string = "#{portfolio.name} - #{portfolio.get_total_value}"
+        puts display_string
+        display_list << display_string
+    end
+    puts "Account balance: #{@balance}\n"
+    display_list
   end
 end
 

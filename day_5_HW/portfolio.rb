@@ -13,6 +13,7 @@ class Portfolio
 
   def self.get_current_stock_price(stock_name)
     # Class method because behavior does not change between instances
+    raise(RuntimeError, "Stock does not exist.") if YahooFinance::get_quotes(YahooFinance::StandardQuote, stock_name)[stock_name].nil?
     YahooFinance::get_quotes(YahooFinance::StandardQuote, stock_name)[stock_name].lastTrade
   end
 
@@ -28,13 +29,17 @@ class Portfolio
     stocks.keys.each {|stock| puts stock}
   end
 
-  def sell_stock(stock_name, num_stocks)  #this is broken and I don't understand why it's giving a NilClass error, both items on either side of the > are Fixnum class.
+  def sell_stock(stock_name, num_stocks) 
+    raise(RuntimeError, "Stock not in portfolio") if @stocks[stock_name].nil?
+    raise(RuntimeError, "Insufficient shares for this sale") if @stocks[stock_name] - num_stocks < 0
     @stocks[stock_name] -= num_stocks
-    #puts @stocks[stock_name].class
-    #puts num_stocks.class
-    #binding.pry
-    raise(RuntimeError, "Insufficient shares for this sale") if @stocks[stock_name] < 0
     @owner.balance += (Portfolio.get_current_stock_price(stock_name) * num_stocks)
+  end
+
+  def get_total_value
+      value = 0
+      @stocks.each_key { |key| value += (Portfolio.get_current_stock_price(key.dup) * @stocks[key]) }
+      value
   end
 
   def portfolio_value
@@ -44,12 +49,9 @@ class Portfolio
       results.push "Your #{num_shares} shares of #{ticker} are worth $ #{Portfolio.get_current_stock_price(ticker)} \n"
     end
     results
-    #share_price = Portfolio.get_current_stock_price(stock_symbol).dup
-    #dollar_value = share_price * num_shares
-    #puts "Your #{num_shares} shares of #{stock_symbol} are worth #{dollar_value}"
-    #end
   end
 end
+
 =begin
 firm1=Firm.new
 account1=Account.new("Mike's account", 50000)
@@ -63,6 +65,3 @@ portfolio1.portfolio_value
 portfolio1.sell_stock("FB", 1)
 portfolio1.portfolio_value
 =end
-
-
-
