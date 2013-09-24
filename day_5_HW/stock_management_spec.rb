@@ -28,26 +28,26 @@ describe Account do
         portfolio_2.name => portfolio_2
       )
     end
+  end
+  describe ' #list_portfolios' do
+    it 'lists a portfolio in the account'do
+      account_1.balance = 30000
+      account_1.add_portfolio(portfolio_1)
+      portfolio_1.buy_stock('AAPL', 5)
+      account_1.list_portfolios.should eq(["Portfolio One - #{portfolio_1.get_total_value}"])
+    end
 
-    describe ' #list_portfolios' do
-      it 'lists a portfolio in the account'do
-        account_1.balance = 30000
-        account_1.add_portfolio(portfolio_1)
-        portfolio_1.buy_stock('AAPL', 5)
-        account_1.list_portfolios.should eq(["Portfolio One - #{portfolio_1.get_total_value}"])
-      end
-
-      it 'lists multiples portfolios' do
-        account_1.balance = 20000
-        account_1.add_portfolio(portfolio_1)
-        portfolio_1.buy_stock('AAPL', 20)
-        account_1.add_portfolio(portfolio_2)
-        portfolio_2.buy_stock('FB', 20)
-        account_1.list_portfolios.should eq(["Portfolio One - #{portfolio_1.get_total_value}",
-                                            "Portfolio Two - #{portfolio_2.get_total_value}"])
-      end
+    it 'lists multiples portfolios' do
+      account_1.balance = 20000
+      account_1.add_portfolio(portfolio_1)
+      portfolio_1.buy_stock('AAPL', 20)
+      account_1.add_portfolio(portfolio_2)
+      portfolio_2.buy_stock('FB', 20)
+      account_1.list_portfolios.should eq(["Portfolio One - #{portfolio_1.get_total_value}",
+                                           "Portfolio Two - #{portfolio_2.get_total_value}"])
     end
   end
+
 
   describe Portfolio do
     let(:account_1) { Account.new("Account 1") }
@@ -78,10 +78,10 @@ describe Account do
         it 'raises RuntimeError with a message if client buys stock > her account balance' do
           expect {  portfolio_1.buy_stock('AAPL', 2) }.to raise_error(RuntimeError, "Insufficient account funds.")
         end
-        it 'raises Runtime error with a message if client tries to buy a non-existent stock' do
-            expect { portfolio_2.buy_stock('zlu', 1) }.to raise_error(RuntimeError, "Stock does not exist.")
-        end
 
+        it 'raises Runtime error with a message if client tries to buy a non-existent stock' do
+          expect { portfolio_2.buy_stock('zlu', 1) }.to raise_error(RuntimeError, "Stock does not exist.")
+        end
       end
 
       context 'sufficient funds stock purcahse' do
@@ -149,20 +149,20 @@ describe Account do
         end
 
         it 'raises a Runtime error with a message if a given stock does not exist in the portfolio' do
-            expect { portfolio_1.sell_stock('FB', 2).to raise_error(RuntimeError, "Stock not in portfolio.") }
+          expect { portfolio_1.sell_stock('FB', 2).to raise_error(RuntimeError, "Stock not in portfolio.") }
         end
+      end
     end
-  end
 
-  describe '#get_total_value' do
-    it 'returns the combined value of all stocks' do
+    describe '#get_total_value' do
+      it 'returns the combined value of all stocks' do
         current_stock_price_1 = Portfolio.get_current_stock_price('FB')
         portfolio_2.buy_stock('FB', 5)
         current_stock_price_2 = Portfolio.get_current_stock_price('AAPL')
         portfolio_2.buy_stock('AAPL', 5)
         portfolio_2.get_total_value.should eq(5 * current_stock_price_1 + 5 * current_stock_price_2)
+      end
     end
-  end
 
     describe 'portfolio_value' do
       it ' lists the num shares and ticker, of one stock held and their $value' do
