@@ -34,22 +34,6 @@ alias .3='cd ../../..'
 alias .4='cd ../../../..'
 alias redis='redis-server /usr/local/etc/redis.conf'
 
-#API KEYS
-export GOOGLE=AIzaSyAvUtRbSoP2diPX1LBfyAtarabTj8kbFic
-
-export AWSKEY=AKIAI325MQGIFCMJS36Q #amazon
-export AWSSEC='tft7RyFFX27kwoc3cAGelo/YwPXjf37Tb0FfDLOT'
-
-export PUSHER_APP=49234
-export PUSHER_KEY=a436cc41a73b90fb2ab4
-export PUSHER_SEC=294282f0ec1aa88d65d1
-
-export GOOGLE_CLIENT_ID='674080020147.apps.googleusercontent.com'
-export GOOGLE_SECRET='CJov7p_eZfqk3T3-jcAxmbpr'
-
-export FACEBOOK_KEY=208777955948480
-export FACEBOOK_SECRET=6ebe570c9e06b1d58d6bb1d702da815c
-export FACEBOOK_access_token='208777955948480|AN2bx9_xr0Pfs_YNrzWhtkjb5-U'
 
 
 
